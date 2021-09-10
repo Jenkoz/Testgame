@@ -301,9 +301,9 @@ void Update(DWORD dt)
 	//Uncomment the whole function to see the brick moves and bounces back when hitting left and right edges
 	//brick_x++;
 
-	brick_x += brick_vx * dt;
+	brick_y += brick_vx * dt;
 
-	if (brick_x <= 0 || brick_x >= BackBufferWidth - BRICK_WIDTH) {
+	if (brick_y <= 0 || brick_y >= BackBufferHeight - BRICK_HEIGHT) {
 
 		brick_vx = -brick_vx;
 
