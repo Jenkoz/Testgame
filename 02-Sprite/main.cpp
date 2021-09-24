@@ -52,6 +52,11 @@ CMario *mario;
 
 CBrick *brick;
 
+CGoomba* goomba;
+#define GOOMBA_START_X 10.0f
+#define GOOMBA_START_Y 100.0f
+#define GOOMBA_START_VX 0.1f
+
 LRESULT CALLBACK WinProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
 	switch (message) {
@@ -76,6 +81,7 @@ void LoadResources()
 	textures->Add(ID_TEX_MARIO, TEXTURE_PATH_MARIO);
 	//textures->Add(ID_ENEMY_TEXTURE, TEXTURE_PATH_ENEMIES, D3DCOLOR_XRGB(156, 219, 239));
 	textures->Add(ID_TEX_MISC, TEXTURE_PATH_MISC);
+	textures->Add(ID_TEX_ENEMY, TEXTURE_PATH_ENEMIES);
 
 
 	CSprites * sprites = CSprites::GetInstance();
@@ -91,6 +97,16 @@ void LoadResources()
 	sprites->Add(10011, 186, 154, 200, 181, texMario);
 	sprites->Add(10012, 155, 154, 171, 181, texMario);
 	sprites->Add(10013, 125, 154, 141, 181, texMario);
+
+	LPTEXTURE texGoomba = textures->Get(ID_TEX_ENEMY);
+
+	// readline => id, left, top, right 
+
+	sprites->Add(30001, 21, 20, 36, 35, texGoomba);
+	/*sprites->Add(30002, 275, 154, 290, 181, texGoomba);
+	sprites->Add(30003, 304, 154, 321, 181, texGoomba);*/
+
+
 
 	LPTEXTURE texMisc = textures->Get(ID_TEX_MISC);
 	sprites->Add(20001, 300, 117, 316, 133, texMisc);
@@ -114,6 +130,12 @@ void LoadResources()
 	ani->Add(10013);
 	animations->Add(501, ani);
 
+	ani = new CAnimation(100);
+	ani->Add(30001);
+	/*ani->Add(30002);
+	ani->Add(30003);*/
+	animations->Add(600, ani);
+
 	
 	ani = new CAnimation(100);
 	ani->Add(20001,1000);
@@ -124,7 +146,8 @@ void LoadResources()
 	
 	
 	mario = new CMario(MARIO_START_X, MARIO_START_Y, MARIO_START_VX);
-	brick = new CBrick(100.0f, 100.0f);
+	brick = new CBrick(100.0f, 80.0f);
+	goomba = new CGoomba(GOOMBA_START_X, GOOMBA_START_Y, GOOMBA_START_VX);
 }
 
 /*
@@ -134,6 +157,7 @@ void LoadResources()
 void Update(DWORD dt)
 {
 	mario->Update(dt);
+	goomba->Update(dt);
 }
 
 void Render()
@@ -158,6 +182,7 @@ void Render()
 
 		brick->Render();
 		mario->Render();
+		goomba->Render();
 
 		// Uncomment this line to see how to draw a porttion of a texture  
 		//g->Draw(10, 10, texMisc, 300, 117, 316, 133);
