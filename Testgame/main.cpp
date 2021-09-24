@@ -304,18 +304,16 @@ void Update(DWORD dt)
 	brick_x += brick_vx * dt;
 	brick_y += brick_vx * dt;
 
-	if (brick_x <= 0 || brick_x >= BackBufferWidth - BRICK_WIDTH) {
-		brick_vx = -brick_vx;
-	}
+
 	if (brick_y <= 0) {
 		brick_y = 0;
 	}
-	/*if (brick_x <= 0) {
+	if (brick_x <= 0) {
 		brick_x = 0;
 	}
 	if (brick_x >= BackBufferWidth - BRICK_WIDTH) {
 		brick_x = BackBufferWidth - BRICK_WIDTH;
-	}*/
+	}
 	if (brick_y >= BackBufferHeight - BRICK_HEIGHT) {
 		brick_y = BackBufferHeight - BRICK_HEIGHT;
 	}
