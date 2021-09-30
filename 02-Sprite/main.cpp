@@ -26,31 +26,39 @@
 
 
 #include "Mario.h"
+#include "Map.h"
 
 
 #define WINDOW_CLASS_NAME L"SampleWindow"
 #define MAIN_WINDOW_TITLE L"02 - Sprite animation"
 #define WINDOW_ICON_PATH L"mario.ico"
 
-#define BACKGROUND_COLOR D3DXCOLOR(200.0f/255, 200.0f/255, 255.0f/255,0.0f)
-#define SCREEN_WIDTH 320
-#define SCREEN_HEIGHT 240
+#define BACKGROUND_COLOR D3DXCOLOR(156.0f/255, 252.0f/255, 240.0f/255,0.0f)
+#define SCREEN_WIDTH 800
+#define SCREEN_HEIGHT 600
 
 #define ID_TEX_MARIO 0
 #define ID_TEX_ENEMY 10
 #define ID_TEX_MISC 20
+#define ID_TEX_TILE 1000
 
 #define TEXTURES_DIR L"textures"
 #define TEXTURE_PATH_MARIO TEXTURES_DIR "\\mario.png"
 #define TEXTURE_PATH_MISC TEXTURES_DIR "\\misc.png"
 #define TEXTURE_PATH_ENEMIES TEXTURES_DIR "\\enemies.png"
+#define TEXTURE_PATH_MAP1 TEXTURES_DIR "\\tile.png"
+#define TEXTURE_PATH_MAP1_DATA TEXTURES_DIR "\\map-tiles.txt"
+
+
 
 CMario *mario;
 #define MARIO_START_X 10.0f
-#define MARIO_START_Y 130.0f
+#define MARIO_START_Y SCREEN_HEIGHT - 48*3
 #define MARIO_START_VX 0.1f
 
 CBrick *brick;
+
+Map* map = Map::GetInstance();
 
 CGoomba* goomba;
 #define GOOMBA_START_X 10.0f
@@ -80,8 +88,10 @@ void LoadResources()
 
 	textures->Add(ID_TEX_MARIO, TEXTURE_PATH_MARIO);
 	//textures->Add(ID_ENEMY_TEXTURE, TEXTURE_PATH_ENEMIES, D3DCOLOR_XRGB(156, 219, 239));
-	textures->Add(ID_TEX_MISC, TEXTURE_PATH_MISC);
-	textures->Add(ID_TEX_ENEMY, TEXTURE_PATH_ENEMIES);
+	//textures->Add(ID_TEX_MISC, TEXTURE_PATH_MISC);
+	//textures->Add(ID_TEX_ENEMY, TEXTURE_PATH_ENEMIES);
+
+	map->LoadResourses(TEXTURE_PATH_MAP1, TEXTURE_PATH_MAP1_DATA);
 
 
 	CSprites * sprites = CSprites::GetInstance();
@@ -102,22 +112,22 @@ void LoadResources()
 
 	// readline => id, left, top, right 
 
-	sprites->Add(30001, 21, 20, 36, 35, texGoomba);
+	//sprites->Add(30001, 21, 20, 36, 35, texGoomba);
 	/*sprites->Add(30002, 275, 154, 290, 181, texGoomba);
 	sprites->Add(30003, 304, 154, 321, 181, texGoomba);*/
 
 
 
-	LPTEXTURE texMisc = textures->Get(ID_TEX_MISC);
-	sprites->Add(20001, 300, 117, 316, 133, texMisc);
-	sprites->Add(20002, 318, 117, 334, 133, texMisc);
-	sprites->Add(20003, 336, 117, 352, 133, texMisc);
-	sprites->Add(20004, 354, 117, 370, 133, texMisc);
-	
+	//LPTEXTURE texMisc = textures->Get(ID_TEX_MISC);
+	//sprites->Add(20001, 300, 117, 316, 133, texMisc);
+	//sprites->Add(20002, 318, 117, 334, 133, texMisc);
+	//sprites->Add(20003, 336, 117, 352, 133, texMisc);
+	//sprites->Add(20004, 354, 117, 370, 133, texMisc);
+
 
 	CAnimations * animations = CAnimations::GetInstance();
 	LPANIMATION ani;
-
+	// mario animation
 	ani = new CAnimation(100);
 	ani->Add(10001);
 	ani->Add(10002);
@@ -130,24 +140,25 @@ void LoadResources()
 	ani->Add(10013);
 	animations->Add(501, ani);
 
-	ani = new CAnimation(100);
-	ani->Add(30001);
+	//goomba animation
+	//ani = new CAnimation(100);
+	//ani->Add(30001);
 	/*ani->Add(30002);
 	ani->Add(30003);*/
-	animations->Add(600, ani);
+	//animations->Add(600, ani);
 
-	
-	ani = new CAnimation(100);
-	ani->Add(20001,1000);
-	ani->Add(20002);
-	ani->Add(20003);
-	ani->Add(20004);
-	animations->Add(510, ani);
+	//misc animation
+	//ani = new CAnimation(100);
+	//ani->Add(20001,1000);
+	//ani->Add(20002);
+	//ani->Add(20003);
+	//ani->Add(20004);
+	//animations->Add(510, ani);
 	
 	
 	mario = new CMario(MARIO_START_X, MARIO_START_Y, MARIO_START_VX);
-	brick = new CBrick(100.0f, 80.0f);
-	goomba = new CGoomba(GOOMBA_START_X, GOOMBA_START_Y, GOOMBA_START_VX);
+	//brick = new CBrick(100.0f, 80.0f);
+	//goomba = new CGoomba(GOOMBA_START_X, GOOMBA_START_Y, GOOMBA_START_VX);
 }
 
 /*
@@ -157,7 +168,7 @@ void LoadResources()
 void Update(DWORD dt)
 {
 	mario->Update(dt);
-	goomba->Update(dt);
+	//goomba->Update(dt);
 }
 
 void Render()
@@ -180,10 +191,10 @@ void Render()
 		FLOAT NewBlendFactor[4] = { 0,0,0,0 };
 		pD3DDevice->OMSetBlendState(g->GetAlphaBlending(), NewBlendFactor, 0xffffffff);
 
-		brick->Render();
+		//brick->Render();
+		map->Render();
 		mario->Render();
-		goomba->Render();
-
+		//goomba->Render();
 		// Uncomment this line to see how to draw a porttion of a texture  
 		//g->Draw(10, 10, texMisc, 300, 117, 316, 133);
 

@@ -5,7 +5,7 @@
 #include "Animation.h"
 #include "Animations.h"
 
-#define MARIO_WIDTH 14
+#define MARIO_WIDTH 48
 
 class CBrick : public CGameObject {
 public: 

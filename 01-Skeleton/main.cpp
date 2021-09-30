@@ -117,9 +117,10 @@ void Update(DWORD dt)
 	*/
 
 	mario->Update(dt);
-	for (int i = 0; i < bricks.size();i++) {
+
+	/*for (int i = 0; i < bricks.size();i++) {
 		bricks[i]->Update(dt);
-	}
+	}*/
 
 	DebugOutTitle(L"01 - Skeleton %0.1f, %0.1f", mario->GetX(), mario->GetY());
 }
