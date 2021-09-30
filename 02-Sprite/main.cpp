@@ -46,8 +46,8 @@
 #define TEXTURE_PATH_MARIO TEXTURES_DIR "\\mario.png"
 #define TEXTURE_PATH_MISC TEXTURES_DIR "\\misc.png"
 #define TEXTURE_PATH_ENEMIES TEXTURES_DIR "\\enemies.png"
-#define TEXTURE_PATH_MAP1 TEXTURES_DIR "\\tile.png"
-#define TEXTURE_PATH_MAP1_DATA TEXTURES_DIR "\\map-tiles.txt"
+#define TEXTURE_PATH_MAP1 TEXTURES_DIR "\\tiles-3.png"
+#define TEXTURE_PATH_MAP1_DATA TEXTURES_DIR "\\map1-tiles.txt"
 
 
 

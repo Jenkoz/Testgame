@@ -5,8 +5,10 @@
 
 
 #define ID_TEXTURE_MAP_1 40
-#define TILE_WIDTH 48
-#define TILE_HEIGHT 48
+#define TILE_WIDTH 16
+#define TILE_HEIGHT 16
+#define DATA_MAP1_MAX_COL 73
+#define DATA_MAP1_MAX_ROW 21
 
 class Map
 {
@@ -15,7 +17,7 @@ private:
 	static Map* __instance;
 	int col;
 	int row;
-	int mapTiles[43][183];
+	int** mapTiles;
 public:
 
 	Map();
