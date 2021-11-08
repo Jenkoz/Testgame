@@ -31,11 +31,13 @@ class CGoomba : public CGameObject
 {
 protected:
 	float vx;
+	int state;
 public:
 	CGoomba(float x, float y, float vx);
 	void Update(DWORD dt);
 	void Render();
-	
+	int GetState() { return state; }
+	void SetState(int state) { this->state = state; }
 };
 
 
