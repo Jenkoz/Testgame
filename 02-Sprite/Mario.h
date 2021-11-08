@@ -24,6 +24,7 @@ public:
 	void Render();
 	void Update(DWORD dt);
 	int GetState() { return state; }
+	void SetState(int state) { this->state = state; }
 };
 
 class CGoomba : public CGameObject
