@@ -38,7 +38,7 @@ public:
 	void Render();
 	int GetState() { return state; }
 	void SetState(int state) { this->state = state; }
-	//12312312312
+	//asdhajklshdjlasjhdkljasd
 };
 
 
