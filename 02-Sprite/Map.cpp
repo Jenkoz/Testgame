@@ -37,10 +37,6 @@ void Map::LoadResourses(LPCWSTR mapFile, LPCWSTR mapDataFile) {
 			int top = (TILE_HEIGHT + 1) * r;
 			int right =  (TILE_WIDTH + 1) * (c + 1) ;
 			int bottom = (TILE_HEIGHT + 1) * (r + 1);
-			if(r == 0)
-				top = 1;
-			if (c == 0)
-				left = 1;
 			sprites->Add(idTile + MAP_TILE_ID, left, top, right, bottom, texMap);
 
 			idTile++;
@@ -48,16 +44,12 @@ void Map::LoadResourses(LPCWSTR mapFile, LPCWSTR mapDataFile) {
 	}
 }
 void Map::Render() {
-	for (int r = 0; r <= 600/TILE_HEIGHT; r++) 
+	for (int r = 0; r < SCREEN_HEIGHT/TILE_HEIGHT; r++) 
 	{
-		for (int c = 0; c <= 800/TILE_WIDTH; c++)
+		for (int c = 0; c < SCREEN_WIDTH/TILE_WIDTH; c++)
 		{
 			float x = c * TILE_WIDTH;
-			/*if (x != 0)
-				x -= 0.5;*/
 			float y = r * TILE_HEIGHT;
-			/*if (y != 0)
-				y -= 0.5;*/
 			sprites->Get(mapTiles[r][c] + MAP_TILE_ID + 1)->Draw(x , y);
 		}
 	}

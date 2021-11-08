@@ -3,7 +3,8 @@
 #include <fstream>
 
 
-
+#define SCREEN_WIDTH 800
+#define SCREEN_HEIGHT 600
 #define ID_TEXTURE_MAP_1 40
 #define TILE_WIDTH 16
 #define TILE_HEIGHT 16

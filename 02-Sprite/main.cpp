@@ -34,8 +34,7 @@
 #define WINDOW_ICON_PATH L"mario.ico"
 
 #define BACKGROUND_COLOR D3DXCOLOR(156.0f/255, 252.0f/255, 240.0f/255,0.0f)
-#define SCREEN_WIDTH 800
-#define SCREEN_HEIGHT 600
+
 
 #define ID_TEX_MARIO 0
 #define ID_TEX_ENEMY 10
@@ -53,7 +52,7 @@
 
 CMario *mario;
 #define MARIO_START_X 10.0f
-#define MARIO_START_Y SCREEN_HEIGHT - 48*3
+#define MARIO_START_Y SCREEN_HEIGHT - 16*12+3
 #define MARIO_START_VX 0.1f
 
 CBrick *brick;
