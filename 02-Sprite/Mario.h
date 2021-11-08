@@ -18,10 +18,11 @@ class CMario : public CGameObject
 {
 protected:
 	float vx;
+	int state;
 public:
 	CMario(float x, float y, float vx);
-	void Update(DWORD dt);
 	void Render();
+	void Update(DWORD dt);
 };
 
 class CGoomba : public CGameObject
@@ -32,6 +33,7 @@ public:
 	CGoomba(float x, float y, float vx);
 	void Update(DWORD dt);
 	void Render();
+	void GetState() { return state; }
 };
 
 
