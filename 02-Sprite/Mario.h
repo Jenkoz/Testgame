@@ -23,7 +23,7 @@ public:
 	CMario(float x, float y, float vx);
 	void Render();
 	void Update(DWORD dt);
-	void GetState() { return state; }
+	int GetState() { return state; }
 };
 
 class CGoomba : public CGameObject
